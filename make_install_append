@@ -1,0 +1,1 @@
+ln -s bash %{buildroot}/usr/bin/sh
