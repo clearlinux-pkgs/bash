@@ -4,7 +4,7 @@
 #
 Name     : bash
 Version  : 4.3.30
-Release  : 31
+Release  : 32
 URL      : http://mirrors.kernel.org/gnu/bash/bash-4.3.30.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/bash/bash-4.3.30.tar.gz
 Summary  : No detailed summary available
@@ -18,6 +18,18 @@ BuildRequires : ncurses-dev
 Patch1: nodlopen.patch
 Patch2: stateless.patch
 Patch3: 0001-Support-stateless-inputrc-configuration.patch
+Patch4: bash43-031
+Patch5: bash43-032
+Patch6: bash43-033
+Patch7: bash43-034
+Patch8: bash43-035
+Patch9: bash43-036
+Patch10: bash43-037
+Patch11: bash43-038
+Patch12: bash43-039
+Patch13: bash43-040
+Patch14: bash43-041
+Patch15: bash43-042
 
 %description
 Introduction
@@ -69,10 +81,22 @@ locales components for the bash package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p0
+%patch5 -p0
+%patch6 -p0
+%patch7 -p0
+%patch8 -p0
+%patch9 -p0
+%patch10 -p0
+%patch11 -p0
+%patch12 -p0
+%patch13 -p0
+%patch14 -p0
+%patch15 -p0
 
 %build
-export CFLAGS="$CFLAGS -Os -ffunction-sections"
-export CXXFLAGS="$CXXFLAGS -Os -ffunction-sections"
+export CFLAGS="$CFLAGS -ffunction-sections -Os "
+export CXXFLAGS="$CXXFLAGS -ffunction-sections -Os "
 %configure --disable-static --enable-cond-command --enable-history --enable-job-control --enable-readline --enable-extended-glob --enable-progcomp --enable-arith-for-command --enable-directory-stack --with-bash-malloc=no
 make V=1  %{?_smp_mflags}
 
