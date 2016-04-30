@@ -4,7 +4,7 @@
 #
 Name     : bash
 Version  : 4.3.30
-Release  : 34
+Release  : 35
 URL      : http://mirrors.kernel.org/gnu/bash/bash-4.3.30.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/bash/bash-4.3.30.tar.gz
 Summary  : No detailed summary available
