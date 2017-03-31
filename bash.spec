@@ -30,6 +30,7 @@ Patch1009: bash44-009
 Patch1010: bash44-010
 Patch1011: bash44-011
 Patch1012: bash44-012
+Patch2001: cve-2017-5932.nopatch
  
 %description
 Introduction
