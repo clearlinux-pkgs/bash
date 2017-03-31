@@ -4,7 +4,7 @@
 #
 Name     : bash
 Version  : 4.4
-Release  : 38
+Release  : 39
 URL      : http://mirrors.kernel.org/gnu/bash/bash-4.4.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/bash/bash-4.4.tar.gz
 Summary  : Bash headers for bash loadable builtins
