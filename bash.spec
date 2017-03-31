@@ -4,7 +4,7 @@
 #
 Name     : bash
 Version  : 4.4
-Release  : 36
+Release  : 37
 URL      : http://mirrors.kernel.org/gnu/bash/bash-4.4.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/bash/bash-4.4.tar.gz
 Summary  : Bash headers for bash loadable builtins
@@ -18,7 +18,19 @@ BuildRequires : ncurses-dev
 Patch1: nodlopen.patch
 Patch2: stateless.patch
 Patch3: 0001-Support-stateless-inputrc-configuration.patch
-
+Patch1001: bash44-001
+Patch1002: bash44-002
+Patch1003: bash44-003
+Patch1004: bash44-004
+Patch1005: bash44-005
+Patch1006: bash44-006
+Patch1007: bash44-007
+Patch1008: bash44-008
+Patch1009: bash44-009
+Patch1010: bash44-010
+Patch1011: bash44-011
+Patch1012: bash44-012
+ 
 %description
 Introduction
 ============
@@ -69,6 +81,18 @@ locales components for the bash package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch1001 -p0
+%patch1002 -p0
+%patch1003 -p0
+%patch1004 -p0
+%patch1005 -p0
+%patch1006 -p0
+%patch1007 -p0
+%patch1008 -p0
+%patch1009 -p0
+%patch1010 -p0
+%patch1011 -p0
+%patch1012 -p0
 
 %build
 export LANG=C
