@@ -1,0 +1,45 @@
+Configure miss: strerror in -lcposix
+Configure miss: varargs.h usability
+Configure miss: varargs.h presence
+Configure miss: varargs.h
+Configure miss: sys/pte.h usability
+Configure miss: sys/pte.h presence
+Configure miss: sys/pte.h
+Configure miss: sys/stream.h usability
+Configure miss: sys/stream.h presence
+Configure miss: sys/stream.h
+Configure miss: sys/ptem.h
+Configure miss: __setostype
+Configure miss: setdtablesize
+Configure miss: libaudit.h usability
+Configure miss: libaudit.h presence
+Configure miss: libaudit.h
+Configure miss: broken strtold
+Configure miss: fpurge
+Configure miss: mbstr.h usability
+Configure miss: mbstr.h presence
+Configure miss: mbstr.h
+Configure miss: mbscasecmp
+Configure miss: mbscmp
+Configure miss: mbschr
+Configure miss: wcwidth broken with unicode combining characters
+Configure miss: locale_charset
+Configure miss: bits16_t
+Configure miss: u_bits16_t
+Configure miss: bits32_t
+Configure miss: u_bits32_t
+Configure miss: bits64_t
+Configure miss: whether the ctype macros accept non-ascii characters
+Configure miss: if dup2 fails to clear the close-on-exec flag
+Configure miss: whether pgrps need synchronization
+Configure miss: struct dirent.d_namlen
+Configure miss: if opendir() opens non-directories
+Configure miss: whether fpurge is declared
+Configure miss: whether or not strcoll and strcmp differ
+Configure miss: if signal handlers must be reinstalled when invoked
+Configure miss: TIOCSTAT in sys/ioctl.h
+Configure miss: whether WCONTINUED flag to waitpid is unavailable or available but broken
+Configure miss: speed_t in sys/types.h
+Configure miss: unusable real-time signals due to large values
+Configure miss: tgetent
+Configure miss: tgetent in -ltermcap

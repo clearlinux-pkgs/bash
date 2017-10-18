@@ -1,16 +1,4 @@
 nodlopen.patch
 stateless.patch
 0001-Support-stateless-inputrc-configuration.patch
-bash44-001
-bash44-002
-bash44-003
-bash44-004
-bash44-005
-bash44-006
-bash44-007
-bash44-008
-bash44-009
-bash44-010
-bash44-011
-bash44-012
 cve-2017-5932.nopatch
