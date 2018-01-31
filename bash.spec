@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB5869F064EA74AB (chet@cwru.edu)
 #
 Name     : bash
-Version  : 4.4.12
-Release  : 41
-URL      : http://mirrors.kernel.org/gnu/bash/bash-4.4.12.tar.gz
-Source0  : http://mirrors.kernel.org/gnu/bash/bash-4.4.12.tar.gz
-Source99 : http://mirrors.kernel.org/gnu/bash/bash-4.4.12.tar.gz.sig
+Version  : 4.4.18
+Release  : 42
+URL      : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz
+Source0  : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz
+Source99 : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz.sig
 Summary  : Bash headers for bash loadable builtins
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
@@ -69,7 +69,7 @@ locales components for the bash package.
 
 
 %prep
-%setup -q -n bash-4.4.12
+%setup -q -n bash-4.4.18
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -79,13 +79,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1508291349
+export SOURCE_DATE_EPOCH=1517364649
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong "
 export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong "
 export FFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong "
 export CXXFLAGS="$CXXFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong "
 %configure --disable-static --enable-cond-command --enable-history --enable-job-control --enable-readline --enable-extended-glob --enable-progcomp --enable-arith-for-command --enable-directory-stack --with-bash-malloc=no
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -95,7 +95,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1508291349
+export SOURCE_DATE_EPOCH=1517364649
 rm -rf %{buildroot}
 %make_install
 %find_lang bash
