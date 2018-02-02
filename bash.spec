@@ -6,7 +6,7 @@
 #
 Name     : bash
 Version  : 4.4.18
-Release  : 42
+Release  : 43
 URL      : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz
 Source99 : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz.sig
