@@ -5,17 +5,18 @@
 # Source0 file verified with key 0xBB5869F064EA74AB (chet@cwru.edu)
 #
 Name     : bash
-Version  : 4.4.18
-Release  : 45
-URL      : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz
-Source0  : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz
-Source99 : http://mirrors.kernel.org/gnu/bash/bash-4.4.18.tar.gz.sig
+Version  : 5.0
+Release  : 46
+URL      : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
+Source0  : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
+Source99 : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz.sig
 Summary  : Bash headers for bash loadable builtins
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
-Requires: bash-bin
-Requires: bash-doc
-Requires: bash-locales
+Requires: bash-bin = %{version}-%{release}
+Requires: bash-license = %{version}-%{release}
+Requires: bash-locales = %{version}-%{release}
+Requires: bash-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : ncurses-dev
 Patch1: nodlopen.patch
@@ -26,7 +27,7 @@ Patch4: cve-2017-5932.nopatch
 %description
 Introduction
 ============
-This is GNU Bash, version 4.4.  Bash is the GNU Project's Bourne
+This is GNU Bash, version 5.0.  Bash is the GNU Project's Bourne
 Again SHell, a complete implementation of the POSIX shell spec,
 but also with interactive command line editing, job control on
 architectures that support it, csh-like features such as history
@@ -39,6 +40,8 @@ of the shell's features.
 %package bin
 Summary: bin components for the bash package.
 Group: Binaries
+Requires: bash-license = %{version}-%{release}
+Requires: bash-man = %{version}-%{release}
 
 %description bin
 bin components for the bash package.
@@ -47,6 +50,7 @@ bin components for the bash package.
 %package doc
 Summary: doc components for the bash package.
 Group: Documentation
+Requires: bash-man = %{version}-%{release}
 
 %description doc
 doc components for the bash package.
@@ -60,6 +64,14 @@ Group: Default
 extras components for the bash package.
 
 
+%package license
+Summary: license components for the bash package.
+Group: Default
+
+%description license
+license components for the bash package.
+
+
 %package locales
 Summary: locales components for the bash package.
 Group: Default
@@ -68,8 +80,16 @@ Group: Default
 locales components for the bash package.
 
 
+%package man
+Summary: man components for the bash package.
+Group: Default
+
+%description man
+man components for the bash package.
+
+
 %prep
-%setup -q -n bash-4.4.18
+%setup -q -n bash-5.0
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -79,11 +99,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517364649
-export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong "
-export FFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong "
+export SOURCE_DATE_EPOCH=1546883219
+export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --enable-cond-command --enable-history --enable-job-control --enable-readline --enable-extended-glob --enable-progcomp --enable-arith-for-command --enable-directory-stack --with-bash-malloc=no
 make  %{?_smp_mflags}
 
@@ -95,13 +115,17 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1517364649
+export SOURCE_DATE_EPOCH=1546883219
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/bash
+cp COPYING %{buildroot}/usr/share/package-licenses/bash/COPYING
+cp lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/lib_readline_COPYING
+cp tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/tests_COPYRIGHT
 %make_install
 %find_lang bash
-## make_install_append content
+## install_append content
 ln -s bash %{buildroot}/usr/bin/sh
-## make_install_append end
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -113,14 +137,24 @@ ln -s bash %{buildroot}/usr/bin/sh
 /usr/bin/sh
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/bash/*
 %doc /usr/share/info/*
-%doc /usr/share/man/man1/*
 
 %files extras
 %defattr(-,root,root,-)
 /usr/bin/bashbug
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/bash/COPYING
+/usr/share/package-licenses/bash/lib_readline_COPYING
+/usr/share/package-licenses/bash/tests_COPYRIGHT
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/bash.1
+/usr/share/man/man1/bashbug.1
 
 %files locales -f bash.lang
 %defattr(-,root,root,-)

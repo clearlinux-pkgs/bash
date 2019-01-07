@@ -1,11 +1,13 @@
 # This file contains recursive sources that require this package
-linux
-linux-aws
+bro
+cmake
 linux-container
 linux-gce
 linux-hyperv
 linux-hyperv-lts
 linux-hyperv-mini
-linux-kvm
+linux-kata
 linux-lts
+linux-oracle
+linux-pk414
 linux-tools
