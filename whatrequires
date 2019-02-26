@@ -1,13 +1,5 @@
 # This file contains recursive sources that require this package
 bro
 cmake
-linux-container
-linux-gce
-linux-hyperv
-linux-hyperv-lts
-linux-hyperv-mini
 linux-kata
-linux-lts
-linux-oracle
-linux-pk414
 linux-tools

@@ -6,7 +6,7 @@
 #
 Name     : bash
 Version  : 5.0
-Release  : 46
+Release  : 47
 URL      : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
 Source0  : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
 Source99 : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz.sig
@@ -41,7 +41,6 @@ of the shell's features.
 Summary: bin components for the bash package.
 Group: Binaries
 Requires: bash-license = %{version}-%{release}
-Requires: bash-man = %{version}-%{release}
 
 %description bin
 bin components for the bash package.
@@ -99,7 +98,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546883219
+export SOURCE_DATE_EPOCH=1551149531
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -115,7 +114,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1546883219
+export SOURCE_DATE_EPOCH=1551149531
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
 cp COPYING %{buildroot}/usr/share/package-licenses/bash/COPYING
