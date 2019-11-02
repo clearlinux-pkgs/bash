@@ -6,10 +6,10 @@
 #
 Name     : bash
 Version  : 5.0
-Release  : 47
-URL      : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
-Source0  : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
-Source99 : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz.sig
+Release  : 48
+URL      : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
+Source1 : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz.sig
 Summary  : Bash headers for bash loadable builtins
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
@@ -19,6 +19,7 @@ Requires: bash-locales = %{version}-%{release}
 Requires: bash-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : ncurses-dev
+BuildRequires : util-linux
 Patch1: nodlopen.patch
 Patch2: stateless.patch
 Patch3: 0001-Support-stateless-inputrc-configuration.patch
@@ -89,6 +90,7 @@ man components for the bash package.
 
 %prep
 %setup -q -n bash-5.0
+cd %{_builddir}/bash-5.0
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -97,29 +99,30 @@ man components for the bash package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551149531
-export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -Os -fdata-sections -ffunction-sections -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1572653799
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --enable-cond-command --enable-history --enable-job-control --enable-readline --enable-extended-glob --enable-progcomp --enable-arith-for-command --enable-directory-stack --with-bash-malloc=no
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1551149531
+export SOURCE_DATE_EPOCH=1572653799
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
-cp COPYING %{buildroot}/usr/share/package-licenses/bash/COPYING
-cp lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/lib_readline_COPYING
-cp tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/tests_COPYRIGHT
+cp %{_builddir}/bash-5.0/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/bash-5.0/lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/bash-5.0/tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/771f6b3c33dd1c00e5d2f319cb801d0611ddd699
 %make_install
 %find_lang bash
 ## install_append content
@@ -131,7 +134,6 @@ ln -s bash %{buildroot}/usr/bin/sh
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/bashbug
 /usr/bin/bash
 /usr/bin/sh
 
@@ -146,9 +148,8 @@ ln -s bash %{buildroot}/usr/bin/sh
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/bash/COPYING
-/usr/share/package-licenses/bash/lib_readline_COPYING
-/usr/share/package-licenses/bash/tests_COPYRIGHT
+/usr/share/package-licenses/bash/771f6b3c33dd1c00e5d2f319cb801d0611ddd699
+/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 
 %files man
 %defattr(0644,root,root,0755)
