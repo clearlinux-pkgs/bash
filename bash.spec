@@ -6,14 +6,15 @@
 #
 Name     : bash
 Version  : 5.0
-Release  : 48
-URL      : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
-Source1 : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz.sig
+Release  : 49
+URL      : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
+Source0  : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
+Source1 : http://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz.sig
 Summary  : Bash headers for bash loadable builtins
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
 Requires: bash-bin = %{version}-%{release}
+Requires: bash-info = %{version}-%{release}
 Requires: bash-license = %{version}-%{release}
 Requires: bash-locales = %{version}-%{release}
 Requires: bash-man = %{version}-%{release}
@@ -51,6 +52,7 @@ bin components for the bash package.
 Summary: doc components for the bash package.
 Group: Documentation
 Requires: bash-man = %{version}-%{release}
+Requires: bash-info = %{version}-%{release}
 
 %description doc
 doc components for the bash package.
@@ -62,6 +64,14 @@ Group: Default
 
 %description extras
 extras components for the bash package.
+
+
+%package info
+Summary: info components for the bash package.
+Group: Default
+
+%description info
+info components for the bash package.
 
 
 %package license
@@ -100,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1572653799
+export SOURCE_DATE_EPOCH=1573769133
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -117,7 +127,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1572653799
+export SOURCE_DATE_EPOCH=1573769133
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
 cp %{_builddir}/bash-5.0/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
@@ -140,11 +150,14 @@ ln -s bash %{buildroot}/usr/bin/sh
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/bash/*
-%doc /usr/share/info/*
 
 %files extras
 %defattr(-,root,root,-)
 /usr/bin/bashbug
+
+%files info
+%defattr(0644,root,root,0755)
+/usr/share/info/bash.info
 
 %files license
 %defattr(0644,root,root,0755)
