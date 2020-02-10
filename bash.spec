@@ -6,7 +6,7 @@
 #
 Name     : bash
 Version  : 5.0
-Release  : 50
+Release  : 51
 URL      : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz.sig
@@ -21,22 +21,22 @@ Requires: bash-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : ncurses-dev
 BuildRequires : util-linux
-Patch1: bash50-001
-Patch2: bash50-002
-Patch3: bash50-003
-Patch4: bash50-004
-Patch5: bash50-005
-Patch6: bash50-006
-Patch7: bash50-007
-Patch8: bash50-008
-Patch9: bash50-009
-Patch10: bash50-010
-Patch11: bash50-011
-Patch12: bash50-012
-Patch13: bash50-013
-Patch14: bash50-014
-Patch15: bash50-015
-Patch16: bash50-016
+Patch1: bash50-001.patch
+Patch2: bash50-002.patch
+Patch3: bash50-003.patch
+Patch4: bash50-004.patch
+Patch5: bash50-005.patch
+Patch6: bash50-006.patch
+Patch7: bash50-007.patch
+Patch8: bash50-008.patch
+Patch9: bash50-009.patch
+Patch10: bash50-010.patch
+Patch11: bash50-011.patch
+Patch12: bash50-012.patch
+Patch13: bash50-013.patch
+Patch14: bash50-014.patch
+Patch15: bash50-015.patch
+Patch16: bash50-016.patch
 Patch17: nodlopen.patch
 Patch18: stateless.patch
 Patch19: 0001-Support-stateless-inputrc-configuration.patch
@@ -141,7 +141,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581358265
+export SOURCE_DATE_EPOCH=1581360985
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -158,7 +158,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1581358265
+export SOURCE_DATE_EPOCH=1581360985
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
 cp %{_builddir}/bash-5.0/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
