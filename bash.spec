@@ -6,7 +6,7 @@
 #
 Name     : bash
 Version  : 5.0
-Release  : 51
+Release  : 52
 URL      : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.0.tar.gz.sig
@@ -37,9 +37,11 @@ Patch13: bash50-013.patch
 Patch14: bash50-014.patch
 Patch15: bash50-015.patch
 Patch16: bash50-016.patch
-Patch17: nodlopen.patch
-Patch18: stateless.patch
-Patch19: 0001-Support-stateless-inputrc-configuration.patch
+Patch17: bash50-017.patch
+Patch18: bash50-018.patch
+Patch19: nodlopen.patch
+Patch20: stateless.patch
+Patch21: 0001-Support-stateless-inputrc-configuration.patch
 
 %description
 Introduction
@@ -132,20 +134,22 @@ cd %{_builddir}/bash-5.0
 %patch14 -p0
 %patch15 -p0
 %patch16 -p0
-%patch17 -p1
-%patch18 -p1
+%patch17 -p0
+%patch18 -p0
 %patch19 -p1
+%patch20 -p1
+%patch21 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581360985
+export SOURCE_DATE_EPOCH=1596837409
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --enable-cond-command --enable-history --enable-job-control --enable-readline --enable-extended-glob --enable-progcomp --enable-arith-for-command --enable-directory-stack --with-bash-malloc=no
 make  %{?_smp_mflags}
@@ -158,7 +162,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1581360985
+export SOURCE_DATE_EPOCH=1596837409
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
 cp %{_builddir}/bash-5.0/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
