@@ -1,21 +1,4 @@
-bash50-001.patch -p0
-bash50-002.patch -p0
-bash50-003.patch -p0
-bash50-004.patch -p0
-bash50-005.patch -p0
-bash50-006.patch -p0
-bash50-007.patch -p0
-bash50-008.patch -p0
-bash50-009.patch -p0
-bash50-010.patch -p0
-bash50-011.patch -p0
-bash50-012.patch -p0
-bash50-013.patch -p0
-bash50-014.patch -p0
-bash50-015.patch -p0
-bash50-016.patch -p0
-bash50-017.patch -p0
-bash50-018.patch -p0
 nodlopen.patch
 stateless.patch
 0001-Support-stateless-inputrc-configuration.patch
+0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch

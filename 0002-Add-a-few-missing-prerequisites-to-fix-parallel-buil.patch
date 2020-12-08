@@ -1,0 +1,38 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Tue, 8 Dec 2020 04:16:25 +0000
+Subject: [PATCH] Add a few missing prerequisites to fix parallel builds
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ Makefile.in | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Makefile.in b/Makefile.in
+index bc97049..e3f77e2 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -1238,6 +1238,7 @@ nojobs.o: config.h bashtypes.h ${BASHINCDIR}/filecntl.h bashjmp.h ${BASHINCDIR}/
+ nojobs.o: command.h ${BASHINCDIR}/stdc.h general.h xmalloc.h jobs.h quit.h siglist.h externs.h
+ nojobs.o: sig.h error.h ${BASHINCDIR}/shtty.h input.h parser.h
+ nojobs.o: $(DEFDIR)/builtext.h
++nojobs.o: $(DEFDIR)/common.h
+ nojobs.o: $(BASHINCDIR)/ocache.h $(BASHINCDIR)/chartypes.h $(BASHINCDIR)/typemax.h
+ 
+ # shell features that may be compiled in
+@@ -1293,6 +1294,7 @@ pcomplete.o: unwind_prot.h dispose_cmd.h make_cmd.h subst.h sig.h pathnames.h
+ pcomplete.o: externs.h ${BASHINCDIR}/maxpath.h execute_cmd.h 
+ pcomplete.o: ${BASHINCDIR}/shmbutil.h ${BASHINCDIR}/shmbchar.h
+ pcomplete.o: ${DEFDIR}/builtext.h
++pcomplete.o: ${DEFDIR}/common.h
+ 
+ # library support files
+ 
+@@ -1315,6 +1317,7 @@ bashline.o: trap.h flags.h assoc.h $(BASHINCDIR)/ocache.h
+ bashline.o: $(DEFSRC)/common.h $(GLOB_LIBSRC)/glob.h alias.h
+ bashline.o: pcomplete.h ${BASHINCDIR}/chartypes.h input.h
+ bashline.o: ${BASHINCDIR}/shmbutil.h ${BASHINCDIR}/shmbchar.h
++bashline.o: ${DEFDIR}/builtext.h
+ bracecomp.o: config.h bashansi.h ${BASHINCDIR}/ansi_stdlib.h
+ bracecomp.o: shell.h syntax.h config.h bashjmp.h ${BASHINCDIR}/posixjmp.h
+ bracecomp.o: command.h ${BASHINCDIR}/stdc.h error.h

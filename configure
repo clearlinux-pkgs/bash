@@ -1,3 +1,9 @@
---enable-cond-command --enable-history --enable-job-control --enable-readline --enable-extended-glob --enable-progcomp --enable-arith-for-command --enable-directory-stack --with-bash-malloc=no
-
-
+--enable-cond-command
+--enable-history
+--enable-job-control
+--enable-readline
+--enable-extended-glob
+--enable-progcomp
+--enable-arith-for-command
+--enable-directory-stack
+--with-bash-malloc=no

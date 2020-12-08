@@ -1,4 +1,10 @@
-Configure miss: strerror in -lcposix
+Configure miss: 32-bit host C ABI
+Configure miss: whether pthread_rwlock_rdlock prefers a writer to a reader
+Configure miss: fpurge
+Configure miss: fake locale system (OpenBSD)
+Configure miss: Solaris 11.4 locale system
+Configure miss: CFLocaleCopyPreferredLanguages
+Configure miss: whether sys/types.h defines makedev
 Configure miss: varargs.h usability
 Configure miss: varargs.h presence
 Configure miss: varargs.h
@@ -11,11 +17,11 @@ Configure miss: sys/stream.h
 Configure miss: sys/ptem.h
 Configure miss: __setostype
 Configure miss: setdtablesize
+Configure miss: arc4random
 Configure miss: libaudit.h usability
 Configure miss: libaudit.h presence
 Configure miss: libaudit.h
 Configure miss: broken strtold
-Configure miss: fpurge
 Configure miss: mbstr.h usability
 Configure miss: mbstr.h presence
 Configure miss: mbstr.h

@@ -4,9 +4,11 @@ We prefer bash not to do dlopen
 liability
 
 
---- bash-4.3.30/configure~	2014-02-11 10:38:00.000000000 -0500
-+++ bash-4.3.30/configure	2015-01-28 16:15:35.250034135 -0500
-@@ -11313,66 +11313,6 @@
+diff --git a/configure b/configure
+index 0f1d3ed..7eb2ea6 100755
+--- a/configure
++++ b/configure
+@@ -15569,66 +15569,6 @@ _ACEOF
  
  
  
