@@ -1,3 +1,7 @@
+bash51-001.patch -p0
+bash51-002.patch -p0
+bash51-003.patch -p0
+bash51-004.patch -p0
 nodlopen.patch
 stateless.patch
 0001-Support-stateless-inputrc-configuration.patch
