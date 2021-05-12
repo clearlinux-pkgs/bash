@@ -6,7 +6,7 @@
 #
 Name     : bash
 Version  : 5.1
-Release  : 55
+Release  : 56
 URL      : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz.sig
@@ -24,10 +24,14 @@ Patch1: bash51-001.patch
 Patch2: bash51-002.patch
 Patch3: bash51-003.patch
 Patch4: bash51-004.patch
-Patch5: nodlopen.patch
-Patch6: stateless.patch
-Patch7: 0001-Support-stateless-inputrc-configuration.patch
-Patch8: 0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
+Patch5: bash51-005.patch
+Patch6: bash51-006.patch
+Patch7: bash51-007.patch
+Patch8: bash51-008.patch
+Patch9: nodlopen.patch
+Patch10: stateless.patch
+Patch11: 0001-Support-stateless-inputrc-configuration.patch
+Patch12: 0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
 
 %description
 This is an sh-compatible shell that incorporates useful features from the Korn
@@ -102,17 +106,21 @@ cd %{_builddir}/bash-5.1
 %patch2 -p0
 %patch3 -p0
 %patch4 -p0
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
+%patch5 -p0
+%patch6 -p0
+%patch7 -p0
+%patch8 -p0
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1612066002
+export SOURCE_DATE_EPOCH=1620853278
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
@@ -137,7 +145,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1612066002
+export SOURCE_DATE_EPOCH=1620853278
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
 cp %{_builddir}/bash-5.1/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
