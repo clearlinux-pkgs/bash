@@ -1,6 +1,5 @@
 # This file contains recursive sources that require this package
 VTK
-bro
 clucene-core
 cmake
 linux-tools

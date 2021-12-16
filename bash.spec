@@ -6,7 +6,7 @@
 #
 Name     : bash
 Version  : 5.1
-Release  : 56
+Release  : 57
 URL      : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz.sig
@@ -28,10 +28,14 @@ Patch5: bash51-005.patch
 Patch6: bash51-006.patch
 Patch7: bash51-007.patch
 Patch8: bash51-008.patch
-Patch9: nodlopen.patch
-Patch10: stateless.patch
-Patch11: 0001-Support-stateless-inputrc-configuration.patch
-Patch12: 0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
+Patch9: bash51-009.patch
+Patch10: bash51-010.patch
+Patch11: bash51-011.patch
+Patch12: bash51-012.patch
+Patch13: nodlopen.patch
+Patch14: stateless.patch
+Patch15: 0001-Support-stateless-inputrc-configuration.patch
+Patch16: 0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
 
 %description
 This is an sh-compatible shell that incorporates useful features from the Korn
@@ -110,17 +114,21 @@ cd %{_builddir}/bash-5.1
 %patch6 -p0
 %patch7 -p0
 %patch8 -p0
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
+%patch9 -p0
+%patch10 -p0
+%patch11 -p0
+%patch12 -p0
+%patch13 -p1
+%patch14 -p1
+%patch15 -p1
+%patch16 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1620853278
+export SOURCE_DATE_EPOCH=1639684519
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
@@ -145,7 +153,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1620853278
+export SOURCE_DATE_EPOCH=1639684519
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
 cp %{_builddir}/bash-5.1/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
