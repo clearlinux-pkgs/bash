@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB5869F064EA74AB (chet@cwru.edu)
 #
 Name     : bash
-Version  : 5.1
-Release  : 57
-URL      : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz.sig
+Version  : 5.1.16
+Release  : 58
+URL      : https://mirrors.kernel.org/gnu/bash/bash-5.1.16.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.1.16.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.1.16.tar.gz.sig
 Summary  : The GNU Bourne Again shell
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
@@ -20,22 +20,10 @@ Requires: bash-locales = %{version}-%{release}
 Requires: bash-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : ncurses-dev
-Patch1: bash51-001.patch
-Patch2: bash51-002.patch
-Patch3: bash51-003.patch
-Patch4: bash51-004.patch
-Patch5: bash51-005.patch
-Patch6: bash51-006.patch
-Patch7: bash51-007.patch
-Patch8: bash51-008.patch
-Patch9: bash51-009.patch
-Patch10: bash51-010.patch
-Patch11: bash51-011.patch
-Patch12: bash51-012.patch
-Patch13: nodlopen.patch
-Patch14: stateless.patch
-Patch15: 0001-Support-stateless-inputrc-configuration.patch
-Patch16: 0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
+Patch1: nodlopen.patch
+Patch2: stateless.patch
+Patch3: 0001-Support-stateless-inputrc-configuration.patch
+Patch4: 0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
 
 %description
 This is an sh-compatible shell that incorporates useful features from the Korn
@@ -104,31 +92,19 @@ man components for the bash package.
 
 
 %prep
-%setup -q -n bash-5.1
-cd %{_builddir}/bash-5.1
-%patch1 -p0
-%patch2 -p0
-%patch3 -p0
-%patch4 -p0
-%patch5 -p0
-%patch6 -p0
-%patch7 -p0
-%patch8 -p0
-%patch9 -p0
-%patch10 -p0
-%patch11 -p0
-%patch12 -p0
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
+%setup -q -n bash-5.1.16
+cd %{_builddir}/bash-5.1.16
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1639684519
+export SOURCE_DATE_EPOCH=1641402934
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
@@ -153,12 +129,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1639684519
+export SOURCE_DATE_EPOCH=1641402934
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
-cp %{_builddir}/bash-5.1/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/bash-5.1/lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/bash-5.1/tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/771f6b3c33dd1c00e5d2f319cb801d0611ddd699
+cp %{_builddir}/bash-5.1.16/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/bash-5.1.16/lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/bash-5.1.16/tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/771f6b3c33dd1c00e5d2f319cb801d0611ddd699
 %make_install
 %find_lang bash
 ## install_append content
