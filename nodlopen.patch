@@ -3,21 +3,19 @@ We prefer bash not to do dlopen
 .. we're not shipping .so's for it, so it can only be a security
 liability
 
-
-diff --git a/configure b/configure
-index 0f1d3ed..7eb2ea6 100755
---- a/configure
-+++ b/configure
-@@ -15569,66 +15569,6 @@ _ACEOF
+--- bash-5.2/configure~	2022-09-23 14:13:22.000000000 +0000
++++ bash-5.2/configure	2022-09-27 14:50:43.237581443 +0000
+@@ -16675,70 +16675,6 @@
  
  
  
 -if test "$opt_static_link" != yes; then
--{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for dlopen in -ldl" >&5
--$as_echo_n "checking for dlopen in -ldl... " >&6; }
--if ${ac_cv_lib_dl_dlopen+:} false; then :
--  $as_echo_n "(cached) " >&6
--else
+-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for dlopen in -ldl" >&5
+-printf %s "checking for dlopen in -ldl... " >&6; }
+-if test ${ac_cv_lib_dl_dlopen+y}
+-then :
+-  printf %s "(cached) " >&6
+-else $as_nop
 -  ac_check_lib_save_LIBS=$LIBS
 -LIBS="-ldl  $LIBS"
 -cat confdefs.h - <<_ACEOF >conftest.$ac_ext
@@ -26,52 +24,55 @@ index 0f1d3ed..7eb2ea6 100755
 -/* Override any GCC internal prototype to avoid an error.
 -   Use char because int might match the return type of a GCC
 -   builtin and then its argument prototype would still apply.  */
--#ifdef __cplusplus
--extern "C"
--#endif
 -char dlopen ();
 -int
--main ()
+-main (void)
 -{
 -return dlopen ();
 -  ;
 -  return 0;
 -}
 -_ACEOF
--if ac_fn_c_try_link "$LINENO"; then :
+-if ac_fn_c_try_link "$LINENO"
+-then :
 -  ac_cv_lib_dl_dlopen=yes
--else
+-else $as_nop
 -  ac_cv_lib_dl_dlopen=no
 -fi
--rm -f core conftest.err conftest.$ac_objext \
+-rm -f core conftest.err conftest.$ac_objext conftest.beam \
 -    conftest$ac_exeext conftest.$ac_ext
 -LIBS=$ac_check_lib_save_LIBS
 -fi
--{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dl_dlopen" >&5
--$as_echo "$ac_cv_lib_dl_dlopen" >&6; }
--if test "x$ac_cv_lib_dl_dlopen" = xyes; then :
--  cat >>confdefs.h <<_ACEOF
--#define HAVE_LIBDL 1
--_ACEOF
+-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dl_dlopen" >&5
+-printf "%s\n" "$ac_cv_lib_dl_dlopen" >&6; }
+-if test "x$ac_cv_lib_dl_dlopen" = xyes
+-then :
+-  printf "%s\n" "#define HAVE_LIBDL 1" >>confdefs.h
 -
 -  LIBS="-ldl $LIBS"
 -
 -fi
 -
--for ac_func in dlopen dlclose dlsym
--do :
--  as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
--ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
--if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
--  cat >>confdefs.h <<_ACEOF
--#define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
--_ACEOF
+-ac_fn_c_check_func "$LINENO" "dlopen" "ac_cv_func_dlopen"
+-if test "x$ac_cv_func_dlopen" = xyes
+-then :
+-  printf "%s\n" "#define HAVE_DLOPEN 1" >>confdefs.h
 -
 -fi
--done
+-ac_fn_c_check_func "$LINENO" "dlclose" "ac_cv_func_dlclose"
+-if test "x$ac_cv_func_dlclose" = xyes
+-then :
+-  printf "%s\n" "#define HAVE_DLCLOSE 1" >>confdefs.h
+-
+-fi
+-ac_fn_c_check_func "$LINENO" "dlsym" "ac_cv_func_dlsym"
+-if test "x$ac_cv_func_dlsym" = xyes
+-then :
+-  printf "%s\n" "#define HAVE_DLSYM 1" >>confdefs.h
 -
 -fi
 -
- ac_fn_c_check_decl "$LINENO" "sys_siglist" "ac_cv_have_decl_sys_siglist" "#include <signal.h>
- /* NetBSD declares sys_siglist in unistd.h.  */
- #ifdef HAVE_UNISTD_H
+-fi
+ 
+ if test "$ac_cv_func_inet_aton" != 'yes'; then
+ 

@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB5869F064EA74AB (chet@cwru.edu)
 #
 Name     : bash
-Version  : 5.1.16
-Release  : 58
-URL      : https://mirrors.kernel.org/gnu/bash/bash-5.1.16.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.1.16.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.1.16.tar.gz.sig
+Version  : 5.2
+Release  : 59
+URL      : https://mirrors.kernel.org/gnu/bash/bash-5.2.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.2.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.2.tar.gz.sig
 Summary  : The GNU Bourne Again shell
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
@@ -23,7 +23,6 @@ BuildRequires : ncurses-dev
 Patch1: nodlopen.patch
 Patch2: stateless.patch
 Patch3: 0001-Support-stateless-inputrc-configuration.patch
-Patch4: 0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
 
 %description
 This is an sh-compatible shell that incorporates useful features from the Korn
@@ -92,19 +91,18 @@ man components for the bash package.
 
 
 %prep
-%setup -q -n bash-5.1.16
-cd %{_builddir}/bash-5.1.16
+%setup -q -n bash-5.2
+cd %{_builddir}/bash-5.2
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641402934
+export SOURCE_DATE_EPOCH=1664290705
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used "
@@ -129,12 +127,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1641402934
+export SOURCE_DATE_EPOCH=1664290705
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
-cp %{_builddir}/bash-5.1.16/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/bash-5.1.16/lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/bash-5.1.16/tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/771f6b3c33dd1c00e5d2f319cb801d0611ddd699
+cp %{_builddir}/bash-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02 || :
+cp %{_builddir}/bash-%{version}/lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02 || :
+cp %{_builddir}/bash-%{version}/tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/771f6b3c33dd1c00e5d2f319cb801d0611ddd699 || :
 %make_install
 %find_lang bash
 ## install_append content

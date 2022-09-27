@@ -5,36 +5,28 @@ Configure miss: TIOCSTAT in sys/ioctl.h
 Configure miss: __setostype
 Configure miss: _sys_siglist in signal.h or unistd.h
 Configure miss: _sys_siglist in system C library
-Configure miss: arc4random
 Configure miss: bits16_t
 Configure miss: bits32_t
 Configure miss: bits64_t
 Configure miss: broken strtold
 Configure miss: fake locale system (OpenBSD)
 Configure miss: fpurge
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: if dup2 fails to clear the close-on-exec flag
 Configure miss: if opendir() opens non-directories
 Configure miss: if signal handlers must be reinstalled when invoked
 Configure miss: libaudit.h
-Configure miss: libaudit.h presence
-Configure miss: libaudit.h usability
 Configure miss: locale_charset
 Configure miss: mbscasecmp
 Configure miss: mbschr
 Configure miss: mbscmp
 Configure miss: mbstr.h
-Configure miss: mbstr.h presence
-Configure miss: mbstr.h usability
 Configure miss: setdtablesize
 Configure miss: speed_t in sys/types.h
-Configure miss: struct dirent.d_namlen
+Configure miss: struct dirent.d_namlen... checking for struct dirent.d_namlen
 Configure miss: sys/pte.h
-Configure miss: sys/pte.h presence
-Configure miss: sys/pte.h usability
 Configure miss: sys/ptem.h
 Configure miss: sys/stream.h
-Configure miss: sys/stream.h presence
-Configure miss: sys/stream.h usability
 Configure miss: sys_siglist in system C library
 Configure miss: tgetent
 Configure miss: tgetent in -ltermcap
@@ -42,14 +34,10 @@ Configure miss: u_bits16_t
 Configure miss: u_bits32_t
 Configure miss: unusable real-time signals due to large values
 Configure miss: varargs.h
-Configure miss: varargs.h presence
-Configure miss: varargs.h usability
 Configure miss: wcwidth broken with unicode combining characters
 Configure miss: whether WCONTINUED flag to waitpid is unavailable or available but broken
 Configure miss: whether fpurge is declared
 Configure miss: whether or not strcoll and strcmp differ
 Configure miss: whether pgrps need synchronization
 Configure miss: whether pthread_rwlock_rdlock prefers a writer to a reader
-Configure miss: whether sys/types.h defines makedev
 Configure miss: whether sys_siglist is declared
-Configure miss: whether the ctype macros accept non-ascii characters

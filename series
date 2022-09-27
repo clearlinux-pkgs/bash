@@ -13,4 +13,4 @@
 nodlopen.patch
 stateless.patch
 0001-Support-stateless-inputrc-configuration.patch
-0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
+#0002-Add-a-few-missing-prerequisites-to-fix-parallel-buil.patch
