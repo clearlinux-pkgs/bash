@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB5869F064EA74AB (chet@cwru.edu)
 #
 Name     : bash
-Version  : 5.2
-Release  : 60
-URL      : https://mirrors.kernel.org/gnu/bash/bash-5.2.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.2.tar.gz
-Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.2.tar.gz.sig
+Version  : 5.2.9
+Release  : 61
+URL      : https://mirrors.kernel.org/gnu/bash/bash-5.2.9.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.2.9.tar.gz
+Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.2.9.tar.gz.sig
 Summary  : The GNU Bourne Again shell
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+
@@ -91,8 +91,8 @@ man components for the bash package.
 
 
 %prep
-%setup -q -n bash-5.2
-cd %{_builddir}/bash-5.2
+%setup -q -n bash-5.2.9
+cd %{_builddir}/bash-5.2.9
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -102,7 +102,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1664887964
+export SOURCE_DATE_EPOCH=1667844868
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition "
 export FCFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition "
@@ -127,7 +127,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1664887964
+export SOURCE_DATE_EPOCH=1667844868
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
 cp %{_builddir}/bash-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02 || :
