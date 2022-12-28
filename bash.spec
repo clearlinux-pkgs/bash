@@ -6,7 +6,7 @@
 #
 Name     : bash
 Version  : 5.2.15
-Release  : 62
+Release  : 63
 URL      : https://mirrors.kernel.org/gnu/bash/bash-5.2.15.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.2.15.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.2.15.tar.gz.sig
@@ -20,6 +20,9 @@ Requires: bash-locales = %{version}-%{release}
 Requires: bash-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : ncurses-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 Patch1: nodlopen.patch
 Patch2: stateless.patch
 Patch3: 0001-Support-stateless-inputrc-configuration.patch
@@ -102,12 +105,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1670967487
+export SOURCE_DATE_EPOCH=1672255905
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition "
-export FCFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition "
-export FFLAGS="$FFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -Os -fdata-sections -ffunction-sections -fno-lto -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffunction-sections -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffunction-sections -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffunction-sections -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffunction-sections -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
 %configure --disable-static --enable-cond-command \
 --enable-history \
 --enable-job-control \
@@ -127,12 +130,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1670967487
+export SOURCE_DATE_EPOCH=1672255905
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bash
-cp %{_builddir}/bash-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02 || :
-cp %{_builddir}/bash-%{version}/lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02 || :
-cp %{_builddir}/bash-%{version}/tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/771f6b3c33dd1c00e5d2f319cb801d0611ddd699 || :
+cp %{_builddir}/bash-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/bash-%{version}/lib/readline/COPYING %{buildroot}/usr/share/package-licenses/bash/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/bash-%{version}/tests/COPYRIGHT %{buildroot}/usr/share/package-licenses/bash/771f6b3c33dd1c00e5d2f319cb801d0611ddd699
 %make_install
 %find_lang bash
 ## install_append content
