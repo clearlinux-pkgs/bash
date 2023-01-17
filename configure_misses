@@ -28,8 +28,6 @@ Configure miss: sys/pte.h
 Configure miss: sys/ptem.h
 Configure miss: sys/stream.h
 Configure miss: sys_siglist in system C library
-Configure miss: tgetent
-Configure miss: tgetent in -ltermcap
 Configure miss: u_bits16_t
 Configure miss: u_bits32_t
 Configure miss: unusable real-time signals due to large values
