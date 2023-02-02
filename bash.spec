@@ -6,7 +6,7 @@
 #
 Name     : bash
 Version  : 5.2.15
-Release  : 64
+Release  : 65
 URL      : https://mirrors.kernel.org/gnu/bash/bash-5.2.15.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/bash/bash-5.2.15.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/bash/bash-5.2.15.tar.gz.sig
