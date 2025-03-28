@@ -1,1 +1,1 @@
-export LIBS="/usr/lib64/libtinfo.a"
+#export LIBS="/usr/lib64/libtinfo.a"

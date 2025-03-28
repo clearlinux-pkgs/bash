@@ -3,3 +3,4 @@ VTK
 clucene-core
 cmake
 linux-tools
+make
